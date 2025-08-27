@@ -66,7 +66,7 @@ A RESTful Node.js API that allows candidates to register, login, upload resumes,
 
     PORT-5000
     MONGODB_URI=mongodb+srv://:<db_password>@cluster0.aysftlo.mongodb.net/<database_name>?retryWrites=true&w=majority&appName=Cluster0
-    JWT-SECRET_KEY=<secretkey>
+    JWT_SECRET_KEY=<secretkey>
 
 # Auther
 
