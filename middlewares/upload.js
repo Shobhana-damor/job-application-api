@@ -3,7 +3,7 @@ const path = require("path");
 const fs = require("fs");
 
 // Ensure uploads folder exists
-const uploadDir = path.join(__dirname, "upload");
+const uploadDir = path.join(__dirname, "../uploads");
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -11,7 +11,7 @@ if (!fs.existsSync(uploadDir)) {
 // File storage config
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/"); //Ensure upload folder exists
+    cb(null, uploadDir); // uploads folder
   },
   filename: (req, file, cb) => {
     const uniqueName = `${Date.now()}-${file.originalname}`;
@@ -20,7 +20,6 @@ const storage = multer.diskStorage({
 });
 
 // File filter: only allow PDF or DOCX
-
 const fileFilter = (req, file, cb) => {
   const allowedTypes = ["pdf", "docx"];
   const ext = path.extname(file.originalname).toLowerCase().replace(".", "");
@@ -28,7 +27,7 @@ const fileFilter = (req, file, cb) => {
   if (allowedTypes.includes(ext)) {
     cb(null, true);
   } else {
-    cb(new Error("Only PDF or DOCx files are allowed"));
+    cb(new Error("Only PDF or DOCX files are allowed"));
   }
 };
 

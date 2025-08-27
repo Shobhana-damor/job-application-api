@@ -6,13 +6,14 @@ const authRoutes = require("./routes/authRoutes");
 const resumeRoutes = require("./routes/resumeRoutes");
 const jobRoutes = require("./routes/jobRoutes");
 const applicationRoutes = require("./routes/applicationRoutes");
+const path = require("path");
 
 app.use(express.json());
 
 app.use("/auth", authRoutes);
 app.use("/resume", resumeRoutes);
 // also serve uploaded files
-app.use("/upload", express.static("upload"));
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use("/jobs", jobRoutes);
 app.use("/applications", applicationRoutes);
 
