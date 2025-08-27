@@ -38,6 +38,7 @@ A RESTful Node.js API that allows candidates to register, login, upload resumes,
    node server.js
 
    server will run at http://localhost:5000
+   Render (example): https://job-application-api-4.onrender.com
 
 5. Authentication
    Use JWT token in headers for app protected routes
@@ -45,22 +46,62 @@ A RESTful Node.js API that allows candidates to register, login, upload resumes,
 
 # API Endpoints
 
-- AUTH
-  POST /auth/register -> Register User
-  POST /auth/login -> login and get token
+# Example (Register):
 
-- Resume upload
-  POST /resume/upload -> Upload resume
-  (PDF/DOCX)
-  Form-Data: key =resume, type=file
+{
+"name": "Shobhana",
+"email": "shobhana@example.com",
+"password": "123456"
+}
 
-- Jobs
-  GET/application -> View user's application (Requires JWT token)
+# Example (Login Response):
+
+{
+"token": "your_jwt_token_here"
+}
+
+# Resume Upload
+
+POST /resume/upload → Upload resume (PDF/DOCX only)
+
+# Request:
+
+Headers: Authorization: Bearer <token>
+
+Body (form-data):
+
+Key: resume (type: file)
+
+# Response:
+
+{
+"message": "Resume upload successfully",
+"path": "uploads/1724827123-resume.pdf"
+}
+
+# Jobs
+
+GET /application → View user’s job applications (Requires JWT)
+
+POST /jobs → Create job (Admin/Auth)
+
+POST /jobs/apply/:jobId → Apply for a job (Requires JWT)
 
 # Testing
 
-    use thunder Client or Postman for testing endpoints.
-    Make sure to add Authorization: Bearer <token> in protected routes
+Use Thunder Client / Postman to test:
+
+1.Register user → POST /auth/register
+
+2.Login user → POST /auth/login (copy token)
+
+- Add token in headers → Authorization: Bearer <token>
+
+3.Upload resume → POST /resume/upload
+
+4.Apply for job → POST /jobs/apply/:jobId
+
+5.view application ->GET /applications
 
 # Sample .env
 
@@ -71,3 +112,4 @@ A RESTful Node.js API that allows candidates to register, login, upload resumes,
 # Auther
 
     Shobhana Damor
+    Fresher MERN Stack Developer | Passionate about Node.js & Backend Development
