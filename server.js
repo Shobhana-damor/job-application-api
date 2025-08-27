@@ -9,12 +9,12 @@ const applicationRoutes = require("./routes/applicationRoutes");
 
 app.use(express.json());
 
-app.use("api/auth", authRoutes);
-app.use("api/resume", resumeRoutes);
+app.use("/auth", authRoutes);
+app.use("/resume", resumeRoutes);
 // also serve uploaded files
 app.use("/upload", express.static("upload"));
-app.use("api/jobs", jobRoutes);
-app.use("api/applications", applicationRoutes);
+app.use("/jobs", jobRoutes);
+app.use("/applications", applicationRoutes);
 
 // temporary home route
 app.get("/", (req, res) => {
