@@ -16,7 +16,8 @@ router.post("/upload", auth, upload.single("resume"), async (req, res) => {
 
     res.json({ message: "Resume upload successfully", path: req.file.path });
   } catch (error) {
-    res.status(500).json({ error: "Upload failed" });
+    console.error("Upload error:", error.message);
+    res.status(500).json({ error: "server error", details: error.message });
   }
 });
 
