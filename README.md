@@ -30,9 +30,9 @@ A RESTful Node.js API that allows candidates to register, login, upload resumes,
 3. Set up .env file
    Create a .env file in the root:
 
-   PORT = 5000
-   MONGO_URI = your_mongodb_connection_string
-   JWT_SECRET = your_secret_key
+   PORT=5000
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET_KEY= your_secret_key
 
 4. Run the server
    node server.js
